@@ -1,0 +1,53 @@
+<mat-dialog-content>
+<mat-card>
+	<mat-card-title class='List-title'>
+		Список товаров для выбора
+	</mat-card-title>
+
+	<mat-card-content>
+		<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+				  <ng-container matColumnDef="ID_PARCEL">
+				    <th mat-header-cell *matHeaderCellDef> Партия </th>
+				    <td mat-cell *matCellDef="let element"> {{element.ID_PARCEL}} </td>
+				  </ng-container>
+
+				  <!-- Name Column -->
+				  <ng-container matColumnDef="name">
+				    <th mat-header-cell *matHeaderCellDef> Название </th>
+				    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+				  </ng-container>
+
+				  <!-- Weight Column -->
+				  <ng-container matColumnDef="barcode">
+				    <th mat-header-cell *matHeaderCellDef> Штрихкод </th>
+				    <td mat-cell *matCellDef="let element"> {{element.barcode}} </td>
+				  </ng-container>
+
+				  <!-- Symbol Column -->
+				  <ng-container matColumnDef="price_sell_sum">
+				    <th mat-header-cell *matHeaderCellDef> Цена </th>
+				    <td mat-cell *matCellDef="let element"> {{element.price_sell_sum}} </td>
+				  </ng-container>
+
+				   <ng-container matColumnDef="quants">
+				    <th mat-header-cell *matHeaderCellDef> Количество </th>
+				    <td mat-cell *matCellDef="let element"> {{element.quant_int}} {{element.quant_num}}</td>
+				  </ng-container>
+
+				  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+				  <tr mat-row *matRowDef="let row; columns: displayedColumns;" 
+				  (dblclick)="getRecord(row)"></tr>
+		</table>
+	</mat-card-content>
+
+
+</mat-card>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+		<button mat-button [mat-dialog-close]>Добавить</button>
+
+		<button  mat-button mat-dialog-close  >Отмена</button>
+
+</mat-dialog-actions>

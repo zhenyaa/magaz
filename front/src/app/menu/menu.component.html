@@ -1,0 +1,40 @@
+<div class="example-container-base">
+  <mat-toolbar color="primary" class="example-toolbar">
+    <!-- <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button> -->
+    <h1 class="example-app-name">Магазин</h1>
+    	<button mat-button [matMenuTriggerFor]="menu">Продажа</button>
+		<mat-menu #menu="matMenu">
+		  <button mat-menu-item routerLink="/sellT">Продажа с выбором</button>
+		  <button mat-menu-item>Продажа без выбора</button>
+		  <button mat-menu-item routerLink="/cashvoucher">Чеки</button>
+		</mat-menu>
+
+	<!-- 	<button mat-button [matMenuTriggerFor]="add">Наменклатура</button>
+			<mat-menu #good="matMenu">
+		  		<button mat-menu-item routerLink="/goods/add">Приход</button>
+		  		<button mat-menu-item>свободно</button>
+			</mat-menu> -->
+
+		<button mat-button [matMenuTriggerFor]="good">Наменклатура</button>
+		<mat-menu #good="matMenu">
+			<button mat-menu-item routerLink="/newgood">Новый товар</button>
+			<button mat-menu-item routerLink="/good">Список</button>
+		</mat-menu>
+
+		<button mat-button [matMenuTriggerFor]="trafic">Движение</button>
+			<mat-menu #trafic="matMenu">
+			  <button mat-menu-item routerLink="/writeoff">Акты оприходования</button>
+			  <button mat-menu-item routerLink="/writeoff">Переоценка</button>
+			</mat-menu>
+
+
+
+		<button mat-button [matMenuTriggerFor]="managment">Управление</button>
+			<mat-menu #managment="matMenu">
+			  <button mat-menu-item routerLink="/writeoff">Наценка</button>
+			<!--   <button mat-menu-item>Продажа без выбора</button>
+			  <button mat-menu-item>Чеки</button> -->
+			</mat-menu>
+
+  </mat-toolbar>
+</div>

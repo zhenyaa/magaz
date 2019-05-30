@@ -1,0 +1,10 @@
+<mat-card>
+	<mat-form-field class="example-full-width">
+    	<input matInput placeholder="Штрихкод" #input [(ngModel)]="data" (keyup.enter)="ReadGood()" value="">
+  	</mat-form-field>
+    	<button mat-raised-button color="primary" (click)="ReadGood()" (keyup.enter)="ReadGood()" >Получить</button>
+    
+	 <mat-chip-list #chipList>
+	 	<mat-chip color="accent" selected *ngIf="chipsStatmen">Не найдено</mat-chip>
+  	</mat-chip-list>
+</mat-card>

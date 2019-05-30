@@ -1,0 +1,18 @@
+<mat-card>
+	<mat-form-field color="accent" class='choosDate'>
+		  <mat-label>Начало</mat-label>
+		  <input matInput [matDatepicker]="picker2" (dateChange)="dpicker1('input', $event)">
+		  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+		  <mat-datepicker #picker2 color="primary"></mat-datepicker>
+	</mat-form-field>
+
+	<mat-form-field color="accent" class='choosDate'>
+		  <mat-label>Конец</mat-label>
+		  <input matInput [matDatepicker]="picker3" (dateChange)="dpicker2('input', $event)">
+		  <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+		  <mat-datepicker #picker3 color="primary"></mat-datepicker>
+	</mat-form-field>
+
+	 <button mat-raised-button color="primary">Получить</button>
+
+</mat-card>

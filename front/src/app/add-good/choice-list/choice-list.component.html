@@ -1,0 +1,9 @@
+<mat-card>
+	<mat-list>
+		<mat-list-item *ngFor="let good of Goods">
+    		<h3 mat-line  (dblclick)="addToEndList(good)">{{good.barcode}} {{good.name}} {{good.quantyti}}</h3>
+    <!-- <div mat-line> {{good.barcode}} </div> -->
+    	<mat-divider></mat-divider>
+  		</mat-list-item>
+	</mat-list>
+</mat-card>

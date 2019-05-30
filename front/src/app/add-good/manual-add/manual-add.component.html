@@ -1,0 +1,16 @@
+<mat-card>
+	<mat-form-field class="example-full-width">
+    	<input matInput placeholder="Штрихкод" [(ngModel)]="newGood.barcode" value="">
+  	</mat-form-field>
+
+  	<mat-form-field class="input nemeInput">
+    	<input matInput placeholder="Название" [(ngModel)]="newGood.name" value="">
+  	</mat-form-field>
+
+  	<mat-form-field class="example-full-width">
+    	<input matInput placeholder="Количество" [(ngModel)]="newGood.quantity" value="">
+  	</mat-form-field>
+
+
+    	<button mat-raised-button color="primary" (click)="add()">Добавить</button>
+</mat-card>

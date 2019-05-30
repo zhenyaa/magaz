@@ -1,0 +1,99 @@
+<!-- <input matInput placeholder="Favorite food" value="Sushi"> -->
+
+<mat-form-field class="example-full-width">
+    <input matInput placeholder="Штрихкод" [(ngModel)]="newGood.barcode" (keyup.enter)= "getGood()">
+</mat-form-field>
+
+<!-- 
+<mat-form-field class="example-full-width">
+</mat-form-field> -->
+    <button mat-raised-button class="head-button-class" color="primary" (click)="printLabel()">Печатать</button>
+
+
+<mat-card class='choisTable'>
+		<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="barcode">
+    <th mat-header-cell *matHeaderCellDef> Barcode </th>
+    <td mat-cell *matCellDef="let element"> {{element.barcode}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="grup">
+    <th mat-header-cell *matHeaderCellDef> Grup </th>
+    <td mat-cell *matCellDef="let element"> {{element.grup}} </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"  (dblclick)="addToOutTable(row)"></tr>
+</table>
+</mat-card>
+
+<mat-card class='EndTable'>
+		<table mat-table [dataSource]="dataSourceOut" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.incId}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="barcode">
+    <th mat-header-cell *matHeaderCellDef> Barcode </th>
+    <td mat-cell *matCellDef="let element"> {{element.barcode}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="grup">
+    <th mat-header-cell *matHeaderCellDef> Grup </th>
+    <td mat-cell *matCellDef="let element"> {{element.grup}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="cost">
+    <th mat-header-cell *matHeaderCellDef> Cost </th>
+    <td mat-cell *matCellDef="let element"> {{element._cost_price}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="quantity">
+    <th mat-header-cell *matHeaderCellDef> quantity </th>
+    <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="delite">
+    <th mat-header-cell *matHeaderCellDef> Удалить </th>
+    <td mat-cell *matCellDef="let element"> 
+    	<button  mat-button (click)="deleteInc(element)"  >
+    		<mat-icon>delete_forever</mat-icon>
+
+    	</button>
+    </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumnsOut"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumnsOut;"></tr>
+</table>
+
+</mat-card>
+
+
+

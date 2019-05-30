@@ -1,0 +1,16 @@
+<mat-card>
+	<mat-card-content>
+		<mat-list>
+			<mat-list-item *ngFor="let good of Goods">
+	    		<div mat-line> {{good.barcode}} {{good.name}}  {{good.quantity}}</div>
+	    		<button mat-raised-button color="primary" (click) = "delGood(good)">Удалить</button>
+
+	    		<mat-divider></mat-divider>
+	  		</mat-list-item>
+	  	</mat-list>
+	</mat-card-content>
+
+	<mat-card-footer>
+    	<button mat-raised-button color="primary" (click) = "sendToServer()">Отправить</button>
+    </mat-card-footer>
+</mat-card>

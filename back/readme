@@ -1,0 +1,4 @@
+#for migration run in console "python3.5 manage.py db migrate",
+# and "python3.5 manage.py db upgrade"
+# If migrate command heve error "Target database is not up to date."
+#run manage.py db stamp heads 

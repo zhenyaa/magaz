@@ -1,0 +1,31 @@
+<mat-grid-list cols="4" rowHeight="4:1">
+  <mat-grid-tile>
+
+  	<mat-card>
+  		Панель Оплаты
+  	</mat-card>
+
+  </mat-grid-tile>
+  <mat-grid-tile>
+
+  	<mat-card>
+  		<p>Сумма:</p>
+  		<p>{{SummOfPAy.priceSum}}</p>
+  	</mat-card>
+
+  </mat-grid-tile>
+  <mat-grid-tile>
+
+  	<mat-card>
+  		<button mat-raised-button color="warn" (click)="payFunc()">Оплатить</button>
+  	</mat-card>
+
+  </mat-grid-tile>
+  <mat-grid-tile>
+
+  	<mat-card>
+  		
+  	</mat-card>
+
+  </mat-grid-tile>
+</mat-grid-list>

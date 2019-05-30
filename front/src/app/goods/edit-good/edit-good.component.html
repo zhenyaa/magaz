@@ -1,0 +1,23 @@
+<!-- {{editGood[0].id}}
+{{editGood[0].name}}
+{{editGood[0].barcode}}
+{{editGood[0].grup}} -->
+
+
+<!-- {{editGood[0]['id']}}
+{{editGood[0]['name']}}
+{{editGood[0]['barcode']}}
+{{editGood[0]['grup']}} -->
+
+
+<mat-card>
+	<mat-form-field class="example-full-width">
+    	<input matInput name="barcode" placeholder="Штрихкод" [(ngModel)]="editGood.barcode">
+  	</mat-form-field>
+
+  	<mat-form-field class="example-full-width2">
+    	<input matInput name="name" placeholder="Название" [(ngModel)]="editGood.name">
+  	</mat-form-field>
+
+    	<button mat-raised-button color="primary" (click)="fixhend()">Сохранить</button>
+</mat-card>

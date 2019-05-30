@@ -1,0 +1,10 @@
+mat-card{
+	 background-color: #efefef;
+	 height: 250px;
+	 max-height: 30%;
+	 overflow: auto;
+}
+mat-list {
+    flex-grow: 1;
+    overflow: auto;
+}

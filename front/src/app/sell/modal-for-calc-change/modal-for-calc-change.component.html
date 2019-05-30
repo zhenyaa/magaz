@@ -1,0 +1,32 @@
+<mat-card>
+	<p>Сумма: {{data.priceSum}}</p>
+
+
+	<mat-form-field class="example-full-width" appearance="outline">
+		<mat-label>Наличные</mat-label>
+    	<input matInput placeholder="Наличные"  
+    	[(ngModel)]="data.customerSum" 
+    	name="HardCash" 
+    	>
+	</mat-form-field>
+
+	<mat-form-field class="example-full-width">
+  		<mat-label>Тип оплаты</mat-label>
+  		<mat-select required [(ngModel)]="newPayData.typeOfPay">
+
+    		<!-- <mat-option value="0" >Наличные</mat-option>
+    		<mat-option value="1" >Безналичные</mat-option> -->
+
+    		<mat-option [value]='0'>Наличные</mat-option>
+    		<mat-option [value]='1'>Безналичные</mat-option>
+  		</mat-select>
+	</mat-form-field>
+
+	<p> Сдача: {{calcCustometSum()}}</p>
+
+	<mat-card-actions>
+		<button mat-button (click)="addToPayList()">Добавить</button>
+
+		<button  mat-button mat-dialog-close>Отмена</button>
+	</mat-card-actions>
+</mat-card>

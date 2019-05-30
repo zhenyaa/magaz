@@ -1,0 +1,28 @@
+mat-card{
+  background: SILVER;
+}
+.changeGoods{
+  max-width: 45%;
+  width: 600px;
+}
+
+.selllist{
+  max-width: 45%;
+  width: 600px;
+}
+
+/* .card-conteiner{
+  display: flex;
+  width: 600px;
+  display: block;
+} */
+
+  /* max-width: 75%; */
+div{
+  background: red;
+  display: flex;
+  width: 900px;
+  margin-left: 15%;
+  margin-right: 25%;
+  /* display: block; */
+}

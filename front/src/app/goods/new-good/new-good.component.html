@@ -1,0 +1,28 @@
+<mat-card>
+	<mat-form-field class="example-full-width">
+    	<input matInput placeholder="Штрихкод" [(ngModel)]="findBarcodeStr" value="">
+  	</mat-form-field>
+    	<button mat-raised-button color="primary" (click)="findBarcode()">Поиск</button>
+</mat-card>
+
+
+<mat-card class="hendAddClass">
+	<mat-form-field class="barcodeInput">
+    	<input matInput placeholder="Штрихкод" [(ngModel)]="newGoodHend.barcode" value="">
+  	</mat-form-field>
+
+  	<mat-form-field class="nameInput">
+    	<input matInput placeholder="Название" [(ngModel)]="newGoodHend.name" value="">
+  	</mat-form-field>
+
+    	<button mat-raised-button color="primary" (click)="addhend()">Добавить</button>
+</mat-card>
+
+
+<mat-list>
+  <mat-list-item *ngFor="let itemgood of newGood">
+  	<mat-card (dblclick)='createNewGood(itemgood)' >{{itemgood.name}}  {{itemgood.barcode}}</mat-card>
+    <!-- <h3 matLine> {{itemgood.name}} </h3> -->
+
+  </mat-list-item>
+</mat-list>

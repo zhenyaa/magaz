@@ -1,0 +1,14 @@
+<mat-list>
+  <mat-list-item *ngFor="let data of dataTest">
+    <!-- <h3> {{data.name}} </h3><span></span>
+    <h3> {{data.barcode}} </h3> -->
+    <h4>
+      <span>{{data.barcode}} </span>
+      <span>{{data.name}} </span>
+    </h4>
+    <button mat-mini-fab (click)="test(data)"><mat-icon>add_shopping_cart</mat-icon></button>
+    <!-- <p matLine> <span> {{data.barcode}} </span>
+      <span class="demo-2"> -- {{data.cost}} </span>
+    </p> -->
+  </mat-list-item>
+</mat-list>
