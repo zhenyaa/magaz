@@ -3,6 +3,9 @@ import datetime
 from sqlalchemy import event, events
 from flask import abort
 # from app.mod_docIncomin.model import DocIncomin as dInc
+from app.mod_stock.model import Stock
+from app.mod_goods.model import Goods
+# from app.mod_docIncomin.model import DocIncomin
 
 class CRUDMixin(object):
     __table_args__ = {'extend_existing': True}
@@ -133,6 +136,29 @@ class Incoming(db.Model, CRUDMixin):
     # def __repr__ (self):
     #     return "<Incoming('%s', '%s', '%s', '%s', '%s')>" % (self.good_id, self._purchase_cost, self._cost_price, self._persent, self.quantity)
 
+
+    def write_in_stock(self):
+        if self.stocks:
+            return True
+        else:
+            return False
+
+    def add_to_stock(self):
+        from app.mod_docIncomin.model import DocIncomin
+        newStock = Stock(self.quantity, self._fractional_number, self._purchase_cost, self._cost_price)
+
+        good = Goods.get(self.good_id)
+        docINc = DocIncomin.get(self.parent_id)
+
+        good.stocks.append(newStock)
+        docINc.stocks.append(newStock)
+        self.stocks.append(newStock)
+        db.session.add(newStock)
+        db.session.commit()
+
+
+        # for obj in db.session.query(cls):
+        #     print(obj)
 
 # def append_event(target, value, initiator):
 #     # print('event target {0}'.format(target))

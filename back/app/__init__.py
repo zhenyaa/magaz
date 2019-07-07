@@ -7,6 +7,7 @@ from flask_cors import CORS
 # from flask_alembic import Alembic
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
+# from back import config
 
 app = Flask(__name__, static_url_path="", template_folder="../static", static_folder="../static")
 api = Api(app)
@@ -17,6 +18,7 @@ app.config.from_object('config')
 db = SQLAlchemy(app)
 migrate = Migrate(app, db) # , compare_type=True,  for change type
 migrate.init_app(app,db)
+print(app.root_path)
 # manager = Manager(app)
 # manager.add_command('db', MigrateCommand)
 # alembic.init_app(app, run_mkdir=False)

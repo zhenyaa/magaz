@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams} from  '@angular/common/http';
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -7,7 +8,7 @@ export class AddGoodService {
 
   constructor(private  httpClient:  HttpClient) { }
 
-  API_URL  =  'http://localhost:5000';
+  API_URL  =  environment.baseUrl;
 
 	  ReadGood(param){
 	     let params: HttpParams = new HttpParams();

@@ -47,6 +47,12 @@ class Voucher(db.Model):
         values = ', '.join("%s=%r" % (n, getattr(self, n)) for n in self.__table__.c.keys() if n not in self._repr_hide)
         return "%s(%s)" % (self.__class__.__name__, values)
 
+    def getQuantChild(self):
+        self.quant_velem = (len(self.VOUCHER_ELEM))
+        db.session.commit()
+
+
+
 def after_insert_listener(mapper, connection, target):
     """обновление данных установка делитель, и расчет количества в десятичном виде """
     voucher_table = Voucher.__table__

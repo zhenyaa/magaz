@@ -53,7 +53,15 @@ export class ShoppingCartComponent implements OnInit {
   		console.log(res);
   		res.listOfProduct= this.dataSource.data;
   		console.log(res);
-  		this.service.CreateNewСashVoucher(res);
+  		this.service.CreateNewСashVoucher(res).subscribe((res)=>{
+        console.log("its response from server");
+        // console.log(res)
+        if (res == "OK") {
+          console.log("server send ok");
+          this.dataSource.data = [];
+          this.calcSum()
+        }
+      });
   	})
 
   }

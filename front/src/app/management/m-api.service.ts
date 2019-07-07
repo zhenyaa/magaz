@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams} from  '@angular/common/http';
 import  {InterForModalLabel} from './edit-doc/DataDialog'
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import  {InterForModalLabel} from './edit-doc/DataDialog'
 export class MAPIService {
 
   constructor(private http: HttpClient) { }
-API_URL  =  'http://localhost:5000';
+API_URL  =  environment.baseUrl;
   CreateNew(user){
   	const body = {name: user.name, age: user.age}; 
   	return this.http.post(this.API_URL + "/incdoc/", body)

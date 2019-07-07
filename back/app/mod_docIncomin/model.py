@@ -178,6 +178,12 @@ def receive_modified(target, value, oldvalue, initiator):
         print(value, oldvalue)
         if  target.stocks:
             if value ==True:
+                print(target.QUANT_NUM, ' diff ', len(target.stocks))
+                if target.QUANT_NUM != len(target.stocks):
+                    for x in target.children:
+                        if x.write_in_stock() == False:
+                            x.add_to_stock()
+
                 for obj in target.stocks:
                     obj.block_level = 0
             else:

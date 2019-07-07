@@ -21,6 +21,7 @@ import {SellingModule} from './selling/selling.module';
 import {SellModule} from './sell/sell.module';
 // import {CashVoucherModule} from './cash-voucher/cash-voucher.module'
 import {CashVoucherModule} from './cash-voucher/cash-voucher.module'
+import {RevaluationModule} from './revaluation/revaluation.module'
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import {CashVoucherModule} from './cash-voucher/cash-voucher.module'
     SellingModule,
     SellModule,
     CashVoucherModule,
+    RevaluationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

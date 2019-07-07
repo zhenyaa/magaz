@@ -4,6 +4,7 @@ import {ChangeSum} from './user-model'
 import {Observable} from 'rxjs';
 import { catchError } from 'rxjs/operators';
  import { throwError } from 'rxjs'
+ import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { catchError } from 'rxjs/operators';
 export class ApiServiceService {
 
   constructor(private http: HttpClient) { }
-API_URL  =  'http://localhost:5000';
+API_URL  =  environment.baseUrl
 
 private handleError(error: HttpErrorResponse) {
   if (error.error instanceof ErrorEvent) {
@@ -41,7 +42,7 @@ private handleError(error: HttpErrorResponse) {
   	let search = new URLSearchParams();
   	search.set('foo', 'moo');
   	search.set('data', "test");
-  	this.http.post(url, {moo:"foo",data:voucher}).subscribe(res => console.log(res));
+  	return this.http.post(url, {moo:"foo",data:voucher});
 }
   	}
 

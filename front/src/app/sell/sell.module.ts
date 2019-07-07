@@ -22,6 +22,7 @@ import { StickyCardInfoComponent } from './sticky-card-info/sticky-card-info.com
 import { ModalListGoodComponent } from './modal-list-good/modal-list-good.component';
 import { ModalQuantGoodComponent } from './modal-quant-good/modal-quant-good.component';
 import {DataStoreService} from './data-store.service';
+import { ThermalPrintModule } from 'ng-thermal-print'; //add this line
 import { ModalForCalcChangeComponent } from './modal-for-calc-change/modal-for-calc-change.component'
 @NgModule({
   declarations: [SellComponent, FindGoodComponent, ShoppingCartComponent, StickyCardInfoComponent, ModalListGoodComponent, ModalQuantGoodComponent, ModalForCalcChangeComponent],
@@ -39,7 +40,8 @@ import { ModalForCalcChangeComponent } from './modal-for-calc-change/modal-for-c
     MatListModule,
     MatButtonModule,
     MatIconModule,
-    MatSelectModule
+    MatSelectModule,
+    ThermalPrintModule
 
 
   ],

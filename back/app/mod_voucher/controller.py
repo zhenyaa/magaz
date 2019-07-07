@@ -7,6 +7,8 @@ from app.mod_incomin.model import Incoming
 from app.mod_voucher.model import Voucher
 from app.mod_voucher_elem.model import VoucherElement
 from flask import jsonify, request
+from app.mod_voucher.printer_voucher import printVoucher
+import datetime
 
 
 class mod_voucher(Resource):
@@ -14,7 +16,19 @@ class mod_voucher(Resource):
 
     def get(self, id=None):
         """Methods get for voucher."""
-        pass
+        date1 = datetime.datetime.strptime(request.args.get("getStartDate"), "%a %b %d %Y").date()
+        date2 = datetime.datetime.strptime(request.args.get("getEndDate"), "%a %b %d %Y").date()
+        print(date1, date2)
+        req = db.session.query(Voucher.name_voucher, Voucher.quant_velem, Voucher.amount_price_sum, Voucher.amount_customer_sum, Voucher.amount_customer_change, Voucher.type_pay, Voucher.created_at)
+        req = req.filter(Voucher.created_at.between(date1, date2))
+        name = list(name.get('name') for name in req.column_descriptions)
+        print(name)
+        resp = list(dict(zip(name, x)) for x in req.all())
+        print(resp)
+        return jsonify(resp)
+
+
+
     def post(self):
         args1 = request.get_json(force=True)
         args = args1.get('data')
@@ -31,10 +45,10 @@ class mod_voucher(Resource):
             Inc.VOUCHER_ELEM.append(newVoucherElement)
             newVoucher.VOUCHER_ELEM.append(newVoucherElement)
             db.session.add(newVoucherElement)
-
-
-        # db.session.bulk_save_objects(userListOfobject)
+        newVoucher.getQuantChild()# calc quant children
+        # printVoucher(args)
         db.session.commit()
+        return "OK" , 200
 
     def put(self):
         args = request.get_json(force=True)

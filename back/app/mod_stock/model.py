@@ -1,6 +1,7 @@
 from app import db
 import datetime
 from sqlalchemy import event
+from sqlalchemy.event import listen
 from app.mod_goods.model import Goods
 
 class Stock(db.Model):
@@ -37,7 +38,7 @@ class Stock(db.Model):
     rate_sell_buy = db.Column(db.Float, default = 1)# отношение закупочной цені к отпускной
     amount_buy_sum = db.Column(db.Float, default = 1) # сумма закупочная
     amount_sell_sum = db.Column(db.Float, default = 1) # сумма отпускная
-    block_level = db.Column(db.Integer, default = 0) # бллокировка остатков, 0-нет блокировки, 1 - резерв, 2 - блокировка по документу
+    block_level = db.Column(db.Integer, default = 0) # бллокировка остатков, 0-нет блокировки, 1 - резерв, 2 - блокировка по документу, 3-блок по  NULL остатку
 
 
     created_at = db.Column(db.DateTime, default=datetime.datetime.now, nullable=False)
@@ -122,3 +123,17 @@ def after_insert_listener(mapper, connection, target):
     )
 
 event.listen(Stock, 'after_insert', after_insert_listener)
+
+
+
+@event.listens_for(Stock, 'after_update')
+def receive_after_update(mapper, connection, target):
+    link_table = Stock.__table__
+    print("after update")
+    if target.quant_int == 0 and target.quant_num ==0:
+        connection.execute(
+            link_table.update().
+                where(link_table.c.id == target.id).
+                values(block_level = 3)
+        )
+
