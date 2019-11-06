@@ -25,13 +25,14 @@
 			<mat-menu #trafic="matMenu">
 			  <button mat-menu-item routerLink="/writeoff">Акты оприходования</button>
 			  <button mat-menu-item routerLink="/reval">Переоценка</button>
+			  <button mat-menu-item routerLink="/balance">Остатки</button>
 			</mat-menu>
 
 
 
 		<button mat-button [matMenuTriggerFor]="managment">Управление</button>
 			<mat-menu #managment="matMenu">
-			  <button mat-menu-item routerLink="/writeoff">Наценка</button>
+			  <button mat-menu-item routerLink="/reval">Наценка</button>
 			<!--   <button mat-menu-item>Продажа без выбора</button>
 			  <button mat-menu-item>Чеки</button> -->
 			</mat-menu>

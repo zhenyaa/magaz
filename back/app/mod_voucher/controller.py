@@ -19,7 +19,7 @@ class mod_voucher(Resource):
         date1 = datetime.datetime.strptime(request.args.get("getStartDate"), "%a %b %d %Y").date()
         date2 = datetime.datetime.strptime(request.args.get("getEndDate"), "%a %b %d %Y").date()
         print(date1, date2)
-        req = db.session.query(Voucher.name_voucher, Voucher.quant_velem, Voucher.amount_price_sum, Voucher.amount_customer_sum, Voucher.amount_customer_change, Voucher.type_pay, Voucher.created_at)
+        req = db.session.query(Voucher.id,Voucher.name_voucher, Voucher.quant_velem, Voucher.amount_price_sum, Voucher.amount_customer_sum, Voucher.amount_customer_change, Voucher.type_pay, Voucher.created_at)
         req = req.filter(Voucher.created_at.between(date1, date2))
         name = list(name.get('name') for name in req.column_descriptions)
         print(name)

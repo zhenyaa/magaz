@@ -11,7 +11,7 @@ from flask_script import Manager
 
 app = Flask(__name__, static_url_path="", template_folder="../static", static_folder="../static")
 api = Api(app)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 app.config.from_object('config')
 
 
@@ -64,5 +64,16 @@ api.add_resource(voucher_module, '/voucher/', '/voucher/<id>')
 from app.mod_label.controller import mod_label as label_module
 api.add_resource(label_module, '/label/' )
 
+from app.mod_revaluation.controller import mod_revaluation as rev_module
+api.add_resource(rev_module, '/rev/', '/rev/<id>')
+
+from app.mod_voucher_elem.controller import mod_voucher_elem as Velem_module
+api.add_resource(Velem_module, '/goodsold/', '/goodsold/<id>' )
+
+from app.mod_revaluation.controller import mod_revaluationElem as revElem_module
+api.add_resource(revElem_module, '/relem/', '/relem/<id>' )
+
+from app.mod_balance.controller import mod_balance as Balance_module
+api.add_resource(Balance_module, '/balance/', '/balance/<id>')
 
 db.create_all()

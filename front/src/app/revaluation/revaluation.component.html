@@ -1,0 +1,57 @@
+
+<div class="example-container-base">
+  <mat-toolbar color="primary" class="example-toolbar">
+   	<mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+
+  		<mat-button-toggle *ngFor="let item of filterArrayOfItem()" 
+  		value="center" aria-label="Text align center" matTooltip={{item.matTooltip}} (click)=item.click()>
+    		<mat-icon class="edit-icon"> {{item.iconName}} </mat-icon>
+  		</mat-button-toggle>
+<!--   		<mat-button-toggle value="left" aria-label="Text align left" matTooltip="Создать документ" (click)='CreateNewDoc()'>
+    		<mat-icon class="create-icon" >add</mat-icon>
+  		</mat-button-toggle>
+
+  		<mat-button-toggle value="center" aria-label="Text align center" matTooltip="Редактировать документ">
+    		<mat-icon class="edit-icon">build</mat-icon>
+  		</mat-button-toggle>
+
+  		<mat-button-toggle value="right" aria-label="Text align right" matTooltip="Удалить" (click)='deleteDoc()'>
+    		<mat-icon class="delete-icon">delete_forever</mat-icon>
+  		</mat-button-toggle>
+
+  		<mat-button-toggle value="right" aria-label="Text align right" matTooltip="Применить">
+    		<mat-icon class="delete-icon">play_arrow</mat-icon>
+  		</mat-button-toggle>
+
+  		<mat-button-toggle value="justify"  aria-label="Text align justify" matTooltip="Печать">
+    		<mat-icon>print</mat-icon>
+  		</mat-button-toggle>
+
+  		<mat-button-toggle value="right" aria-label="Text align right" matTooltip="Добавить"
+  		 (click)='openAddWive()'>
+    		<mat-icon class="delete-icon">add_shopping_cart</mat-icon>
+  		</mat-button-toggle> -->
+
+	</mat-button-toggle-group>
+
+  </mat-toolbar>
+</div>
+
+<mat-tab-group  (selectedIndexChange)="selectedIndexChange($event)" >
+	<mat-tab label="Список">
+   		<app-meneg 
+   		(increment)="countChange($event)"
+   		[listDoc] = 'listDoc'
+   		></app-meneg> 
+	</mat-tab>
+
+  	<mat-tab label="Содержание">
+  		<app-adding *ngIf="openADDWiew"></app-adding>
+		<app-content 
+			[document-id]='doc_Id'
+			[dataFromId]= 'dataFromId'
+		></app-content>
+
+	</mat-tab>
+</mat-tab-group>
+

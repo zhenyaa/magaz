@@ -57,8 +57,6 @@ def after_insert_listener(mapper, connection, target):
     """обновление данных установка делитель, и расчет количества в десятичном виде """
     voucher_table = Voucher.__table__
     nameFortarget = 'РЧ-' + str(target.id).zfill(6)
-    print(target)
-    # print(len(target.listOfProduct))
     if target.name_voucher is None:
         connection.execute(
             voucher_table.update().

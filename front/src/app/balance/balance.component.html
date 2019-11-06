@@ -1,0 +1,23 @@
+<!-- <app-meneg></app-meneg> -->
+<div class="example-container-base">
+  <mat-toolbar color="primary" class="example-toolbar">
+   	<mat-button-toggle-group class="align-items" name="fontStyle" aria-label="Font Style">
+
+  			<!-- new test -->
+  		<mat-button-toggle value="justify" [disabled]="falce"  aria-label="Text align justify" matTooltip="Фильтер" (click)='openAddWive()'>
+    		<mat-icon>filter_tilt_shift</mat-icon>
+  		</mat-button-toggle>
+  			<!-- end test -->
+
+
+	</mat-button-toggle-group>
+  </mat-toolbar>
+</div>
+<app-adding *ngIf="openADDWiew" 
+(balanceData)="balanceDataChange($event)"
+></app-adding>
+
+<app-list-item
+	[dataTable]= 'dataTable'
+	[dataSource]= 'dataSource'
+></app-list-item>

@@ -1,0 +1,23 @@
+<!-- <mat-form-field class="input-param">
+  <mat-label>Название</mat-label>
+  <input matInput [(ngModel)]="name">
+</mat-form-field> -->
+
+<mat-form-field class="input-param">
+  <mat-label>Код партии</mat-label>
+  <input matInput [(ngModel)]="parcel" >
+</mat-form-field>
+
+<mat-form-field class="input-param">
+  <mat-label>Штрих-код</mat-label>
+  <input matInput [(ngModel)]="barcode">
+</mat-form-field>
+
+<mat-form-field class="input-param">
+  <mat-label>Кол. ост.</mat-label>
+  <input matInput [(ngModel)]="balanceQuant">
+</mat-form-field>
+
+<button mat-raised-button color="primary" (click)="getStockElem()">Получить</button>
+
+<mat-divider></mat-divider>

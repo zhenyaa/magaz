@@ -1,0 +1,48 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Товар </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="barcode">
+    <th mat-header-cell *matHeaderCellDef> Штрих. код </th>
+    <td mat-cell *matCellDef="let element"> {{element.barcode}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="parcel">
+    <th mat-header-cell *matHeaderCellDef> Парт. Код </th>
+    <td mat-cell *matCellDef="let element"> {{element.ID_PARCEL}} </td>
+  </ng-container>
+
+   <ng-container matColumnDef="doc_name">
+    <th mat-header-cell *matHeaderCellDef> Наз. док. </th>
+    <td mat-cell *matCellDef="let element"> {{element.DOC_NAME}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef> Дата </th>
+    <td mat-cell *matCellDef="let element"> {{element.date | date: 'dd-MM-yyyy'}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+
+
+  <ng-container matColumnDef="quantEnd">
+    <th mat-header-cell *matHeaderCellDef> Остаток </th>
+    <td mat-cell *matCellDef="let element"> {{element.quant_int}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef> Цена </th>
+    <td mat-cell *matCellDef="let element"> {{element.price_sell_sum}} </td>
+  </ng-container>
+
+ 
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

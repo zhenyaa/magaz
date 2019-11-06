@@ -101,12 +101,12 @@ class RevaluationHead(db.Model, CRUDMixin):
 
     children = db.relationship("Revaluation", backref="revaluation_head_1")
 
-    def __init__(self, date):
+    def __init__(self):
         """
 Конструктор сласса Актов оприходования
         :param date: дата создания
         """
-        self.date = date
+        # self.date = date
 
     _repr_hide = ['created_at', 'updated_at']
 
@@ -114,6 +114,12 @@ class RevaluationHead(db.Model, CRUDMixin):
         values = ', '.join("%s=%r" % (n, getattr(self, n)) for n in self.__table__.c.keys() if n not in self._repr_hide)
         return "%s(%s)" % (self.__class__.__name__, values)
 
+    def setDOCname(self):
+        if self.DOC_NAME == None:
+            resp = 'АП-'
+            new = resp + str(self.id).zfill(6)
+            self.DOC_NAME = new
+            db.session.commit()
 
 
 
@@ -153,7 +159,7 @@ class Revaluation(db.Model, CRUDMixin):
     STOCK_PERENT = db.relationship('Stock', backref="revaluationS")
 
     parent_id = db.Column(db.Integer, db.ForeignKey('revaluation_head.id'))
-    parent = db.relationship("RevaluationHead", back_populates="revaluation_H")
+    parent = db.relationship("RevaluationHead", backref="revaluation_H")
 
 
     def __init__(self, date):

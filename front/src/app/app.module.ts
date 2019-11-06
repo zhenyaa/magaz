@@ -21,13 +21,13 @@ import {SellingModule} from './selling/selling.module';
 import {SellModule} from './sell/sell.module';
 // import {CashVoucherModule} from './cash-voucher/cash-voucher.module'
 import {CashVoucherModule} from './cash-voucher/cash-voucher.module'
-import {RevaluationModule} from './revaluation/revaluation.module'
-
+import {RevaluationModule} from './revaluation/revaluation.module';
+import {BalanceModule} from './balance/balance.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent
+    MenuComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -44,6 +44,7 @@ import {RevaluationModule} from './revaluation/revaluation.module'
     SellModule,
     CashVoucherModule,
     RevaluationModule,
+    BalanceModule
   ],
   providers: [],
   bootstrap: [AppComponent]
