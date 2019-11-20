@@ -7,7 +7,7 @@ from app.mod_incomin.model import Incoming
 from app.mod_voucher.model import Voucher
 from app.mod_voucher_elem.model import VoucherElement
 from flask import jsonify, request
-from app.mod_voucher.printer_voucher import printVoucher
+# from app.mod_voucher.printer_voucher import printVoucher
 import datetime
 
 

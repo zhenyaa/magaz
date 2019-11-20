@@ -4,7 +4,68 @@ from sqlalchemy import event
 from sqlalchemy.event import listen
 from app.mod_goods.model import Goods
 
-class Stock(db.Model):
+class CRUDMixin(object):
+    __table_args__ = {'extend_existing': True}
+
+    @classmethod
+    def query(cls):
+        return db.session.query(cls)
+
+    @classmethod
+    def get(cls, _id):
+        """
+
+        :rtype: object
+        """
+        if any((isinstance(_id, str) and _id.isdigit(),
+                isinstance(_id, (int, float))),):
+            return cls.query.get(int(_id))
+        return None
+
+    @classmethod
+    def get_by(cls, **kwargs):
+        return cls.query.filter_by(**kwargs).first()
+
+    @classmethod
+    def get_or_404(cls, _id):
+        rv = cls.get(_id)
+        if rv is None:
+            abort(404)
+        return rv
+
+    @classmethod
+    def get_or_create(cls, **kwargs):
+        r = cls.get_by(**kwargs)
+        if not r:
+            r = cls(**kwargs)
+            db.session.add(r)
+        return r
+
+    @classmethod
+    def create(cls, **kwargs):
+        instance = cls(**kwargs)
+        return instance.save()
+
+    def update(self, commit=True, **kwargs):
+        for attr, value in kwargs.iteritems():
+            setattr(self, attr, value)
+        return commit and self.save() or self
+
+    def save(self, commit=True):
+        db.session.add(self)
+        if commit:
+            try:
+                db.session.commit()
+            except Exception:
+                db.session.rollback()
+                raise
+        return self
+
+    def delete(self, commit=True):
+        db.session.delete(self)
+        return commit and db.session.commit()
+
+class Stock(db.Model, CRUDMixin):
     """
     класс для продаж
 
@@ -28,6 +89,7 @@ class Stock(db.Model):
     PARCEL_PERENT = db.relationship('Incoming', backref="stockI")  # must by class name in relationship
     ID_DOC = db.Column(db.Integer, db.ForeignKey("docIncomin.id"))# указатель на документ прихода
     DOC_PERENT = db.relationship('DocIncomin', backref="stockD")  # must by class name in relationship
+    revaluation = db.relationship("Revaluation", backref="stock_reval")
 
     quant_int = db.Column(db.Integer, default = 1) # целое количество
     quant_num = db.Column(db.Integer, default = 1) # дробное количество чеслитель

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders, HttpParams} from  '@angular/common/http';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +16,6 @@ export class ApiService {
 
   ReadDocElem(id){
   	return this.http.get(this.API_URL+ "/relem/" + id)
-
   }
 
   CreateNewDoc(){
@@ -28,5 +28,9 @@ export class ApiService {
 
   ReadStockElem(name, part, barcode){
   	return this.http.get(this.API_URL + '/stock/', {params: {rname:name, rparcel:part, rbarcode:barcode}})
+  }
+
+  CreateNewElem(oldElem, elem, parentID){
+    return this.http.post(this.API_URL+ '/relem/', {elem:{old:oldElem, new:elem, parentId:parentID}})
   }
 }

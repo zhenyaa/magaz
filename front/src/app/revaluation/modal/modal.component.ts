@@ -28,6 +28,9 @@ export class RevData {
   styleUrls: ['./modal.component.sass']
 })
 export class ModalComponent implements OnInit {
+  /*
+  Модал для изменения цены
+  */
 
   constructor( public dialogRef: MatDialogRef<ModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private cdRef : ChangeDetectorRef) { }
@@ -37,7 +40,7 @@ export class ModalComponent implements OnInit {
  
 
   ngOnInit() {
-  	console.log(this.data);
+  	console.log('its modal revaluation ',this.data);
   	this.validatorList();
   }
 

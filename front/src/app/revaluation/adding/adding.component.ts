@@ -1,24 +1,51 @@
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnChanges, OnDestroy, AfterContentChecked} from '@angular/core';
 import { ApiService} from '../api.service'
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import {DataService} from '../data.service'
 import {ModalComponent} from '../modal/modal.component'
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-adding',
   templateUrl: './adding.component.html',
   styleUrls: ['./adding.component.sass']
 })
-export class AddingComponent implements OnInit {
+export class AddingComponent implements OnInit, OnDestroy, OnChanges, AfterContentChecked { 
+  /*
+  Компонент отоброжения выбора елемента
+  */
 
 	@Output() increment: EventEmitter<string> = new EventEmitter<string>();
-
-  constructor(private service: ApiService, private dialog: MatDialog,) { }
+  sub: Subscription;
+  constructor(private service: ApiService, private dialog: MatDialog, private dataStore: DataService) { 
+    }
 
 name:string = null
 parcel: number= null
 barcode: number= null
+docId:any = null
 
   ngOnInit() {
+    // this.sub = this.dataStore.curDocId.subscribe((value)=>{
+    //   console.log('test subs curdocid', value);
+    //   this.docId = value;
+    // })
   }
+
+  ngOnChanges() {
+      
+  }
+
+  ngOnDestroy(){
+    this.sub.unsubscribe()
+  }
+  ngAfterContentChecked() {
+    this.sub = this.dataStore.curDocId.subscribe((value)=>{
+      console.log('test subs curdocid', value);
+      this.docId = value;
+    })
+       
+    }
+  
   displayedColumns: string[] = ['parcel', 'name', 'cost', 'quantity'];
   dataSours = [];
 
@@ -38,16 +65,17 @@ barcode: number= null
 
   modalFuncOpen(data){
   	console.log(data);
-
-            const dialogRef = this.dialog.open(ModalComponent, {
+           const dialogRef = this.dialog.open(ModalComponent, {
            width: '50%',
            disableClose: true,
            data: {good: data}
          });
 
          dialogRef.afterClosed().subscribe(result => {
-            console.log(111);
-			console.log('its result',result);           
+			      console.log('its adding component post elem',result, this.docId);
+            this.service.CreateNewElem(data, result, this.docId).subscribe((res)=>{
+              console.log(res);
+            })           
          });
   }
 }

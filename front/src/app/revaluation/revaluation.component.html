@@ -45,11 +45,12 @@
    		></app-meneg> 
 	</mat-tab>
 
-  	<mat-tab label="Содержание">
+  	<mat-tab label="Содержание" [disabled] = '!doc_id_rep'>
   		<app-adding *ngIf="openADDWiew"></app-adding>
 		<app-content 
 			[document-id]='doc_Id'
 			[dataFromId]= 'dataFromId'
+
 		></app-content>
 
 	</mat-tab>

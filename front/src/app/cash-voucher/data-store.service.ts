@@ -7,8 +7,8 @@ export class DataStoreService {
 
   constructor() { }
 
-  private Voucher = new Subject();
-	curVoucher = this.Voucher.asObservable();
+private Voucher = new Subject();
+curVoucher = this.Voucher.asObservable();
 
 
  changeMessage(message) {

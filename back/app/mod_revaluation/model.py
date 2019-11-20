@@ -80,7 +80,6 @@ class RevaluationHead(db.Model, CRUDMixin):
     сумма после
     раз в %
     раз в грн
-
     """
     __tablename__ = "revaluation_head"
 
@@ -152,22 +151,24 @@ class Revaluation(db.Model, CRUDMixin):
     ID_PARCEL = db.Column(db.Integer, db.ForeignKey("incoming.id"))  # Указатель на партию
     PARCEL_PERENT = db.relationship('Incoming', backref="revaluationI")
 
-    ID_GOOD = db.Column(db.Integer, db.ForeignKey("goods.id"))  # Указатель на партию
+    ID_GOOD = db.Column(db.Integer, db.ForeignKey("goods.id"))  # Указатель на goods
     GOOD_PERENT = db.relationship('Goods', backref="revaluationG")
 
-    ID_STOCK = db.Column(db.Integer, db.ForeignKey("stock.id"))  # Указатель на партию
+    ID_STOCK = db.Column(db.Integer, db.ForeignKey("stock.id"))  # Указатель на stock
     STOCK_PERENT = db.relationship('Stock', backref="revaluationS")
 
-    parent_id = db.Column(db.Integer, db.ForeignKey('revaluation_head.id'))
+    parent_id = db.Column(db.Integer, db.ForeignKey('revaluation_head.id')) # Указатель на RevaluationHead
     parent = db.relationship("RevaluationHead", backref="revaluation_H")
 
 
-    def __init__(self, date):
+    def __init__(self, price_cost_before, price_cost_after):
         """
 Конструктор сласса Актов оприходования
         :param date: дата создания
         """
-        self.date = date
+        self.PRICE_COST_BEFORE = price_cost_before
+        self.PRICE_COST_AFTER = price_cost_after
+
 
     _repr_hide = ['created_at', 'updated_at']
 

@@ -23,7 +23,7 @@ import {MatCardModule} from '@angular/material/card';
 import { MatDialogModule } from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
 import { MyfilterPipe } from './myfilter.pipe';
-
+import {DataService} from './data.service'
 @NgModule({
   declarations: [MenegComponent, RevaluationComponent, ContentComponent, AddingComponent, ModalComponent, MyfilterPipe],
   imports: [
@@ -46,6 +46,7 @@ import { MyfilterPipe } from './myfilter.pipe';
     BrowserModule,
     ReactiveFormsModule
   ],
+  providers: [DataService],
 
   entryComponents: [
   	MenegComponent,

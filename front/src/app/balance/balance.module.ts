@@ -22,7 +22,7 @@ import {MatCardModule} from '@angular/material/card';
 import { MatDialogModule } from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
 import { AddingComponent } from './adding/adding.component';
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [BalanceComponent, ListItemComponent, MenegComponent, AddingComponent],
@@ -44,7 +44,8 @@ import { AddingComponent } from './adding/adding.component';
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
-    BrowserModule
+    BrowserModule,
+    MatPaginatorModule
 
   ]
 })

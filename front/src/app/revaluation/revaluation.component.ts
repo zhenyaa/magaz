@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {ApiService} from './api.service';
 import { FormControl, Validators } from '@angular/forms';
-
+import {DataService} from './data.service'
 @Component({
   selector: 'app-revaluation',
   templateUrl: './revaluation.component.html',
@@ -9,8 +9,6 @@ import { FormControl, Validators } from '@angular/forms';
   encapsulation: ViewEncapsulation.None
 })
 export class RevaluationComponent implements OnInit {
-	encapsulation: ViewEncapsulation.None
-
 	_stateForTab:boolean = true;
 
 	public ValidateName: FormControl;
@@ -70,7 +68,7 @@ export class RevaluationComponent implements OnInit {
 	];
 
 
-  constructor(private service: ApiService) { }
+  constructor(private service: ApiService, private dataStore: DataService) { }
 
   ngOnInit() {
   	this.getDocList();
@@ -83,18 +81,19 @@ export class RevaluationComponent implements OnInit {
 
   countChange(event){
   	this.doc_id_rep = event;
+    // this.dataStore.changeDocID(event);
   }
 
  
   selectedIndexChange(event){
   	this._stateForTab = this._stateForTab != true;
-  	// console.log('mattabevent', event);
-  	// if(event == 1){
-  	// 	this.doc_Id = this.doc_id_rep;
-  	// 	this.service.ReadDocElem(this.doc_Id).subscribe((res:any)=>{
-  	// 		this.dataFromId = res;
-  	// 	})
-  	// 	}
+  	console.log('iits event tab',event);
+    if (event == 1){
+      this.service.ReadDocElem(this.doc_id_rep).subscribe((res)=>{
+        console.log(res);
+        this.dataStore.setDataSourse(res);
+      })
+    }
   }
 
   getDocList(){

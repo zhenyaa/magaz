@@ -108,6 +108,7 @@ class Incoming(db.Model, CRUDMixin):
     perent = db.relationship('DocIncomin', backref = "incomingD")# must by class name in relationship
     stocks = db.relationship("Stock", backref="incomingST")  # must by class name in relationship'
     VOUCHER_ELEM = db.relationship("VoucherElement", backref="incomingVE")  # must by class name in relationship'
+    revaluation = db.relationship("Revaluation", backref="incoming_reval")
 
     def __init__(self, good_id:int, _purchase_cost:float, _cost_price:float, _persent:float, quantity:int, _fractional_number:int ):
         """
