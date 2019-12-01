@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {ApiService} from './api.service';
 import { FormControl, Validators } from '@angular/forms';
 import {DataService} from './data.service'
+import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-revaluation',
   templateUrl: './revaluation.component.html',
@@ -76,12 +77,11 @@ export class RevaluationComponent implements OnInit {
   openADDWiew:boolean= false;
   doc_Id: String;
   doc_id_rep: String
-  dataFromId = [];
+  dataFromId  = new MatTableDataSource();
   listDoc = [];
 
   countChange(event){
   	this.doc_id_rep = event;
-    // this.dataStore.changeDocID(event);
   }
 
  
@@ -89,10 +89,9 @@ export class RevaluationComponent implements OnInit {
   	this._stateForTab = this._stateForTab != true;
   	console.log('iits event tab',event);
     if (event == 1){
-      this.service.ReadDocElem(this.doc_id_rep).subscribe((res)=>{
-        console.log(res);
-        this.dataStore.setDataSourse(res);
-      })
+         this.service.ReadDocElem(this.doc_Id).subscribe((res:any)=>{
+           this.dataFromId.data = res;
+         })
     }
   }
 

@@ -64,7 +64,6 @@ docId:any = null
   }
 
   modalFuncOpen(data){
-  	console.log(data);
            const dialogRef = this.dialog.open(ModalComponent, {
            width: '50%',
            disableClose: true,
@@ -72,10 +71,15 @@ docId:any = null
          });
 
          dialogRef.afterClosed().subscribe(result => {
-			      console.log('its adding component post elem',result, this.docId);
-            this.service.CreateNewElem(data, result, this.docId).subscribe((res)=>{
+           if (result == ''){
+             console.log('result is null', result);
+             }
+           else{
+              this.service.CreateNewElem(data, result, this.docId).subscribe((res)=>{
               console.log(res);
-            })           
-         });
+                  }) 
+              }
+                       
+           });
   }
 }

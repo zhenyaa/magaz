@@ -33,4 +33,8 @@ export class ApiService {
   CreateNewElem(oldElem, elem, parentID){
     return this.http.post(this.API_URL+ '/relem/', {elem:{old:oldElem, new:elem, parentId:parentID}})
   }
+
+  DelateRevalGood(id:number){
+    return this.http.delete(this.API_URL + '/relem/' + id)
+  }
 }

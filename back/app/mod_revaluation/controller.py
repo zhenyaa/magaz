@@ -82,5 +82,6 @@ class mod_revaluationElem(Resource):
         db.session.commit()
         return "ok", 201
 
-
- 
+    def delete(self, id=None):
+        Revaluation.get(id).delete()
+        return 'ok', 200

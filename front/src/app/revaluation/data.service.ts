@@ -34,5 +34,11 @@ getDataSourse(){
 	return this.curDataSourceContent
 }
 
+private outTableStatus = new Subject();
+curOutTableStatus = this.outTableStatus.asObservable();
+
+setOutTableStatus(msg){
+	this.outTableStatus.next(msg)
+}
 
 }
