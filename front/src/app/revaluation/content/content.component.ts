@@ -17,23 +17,16 @@ export class ContentComponent implements OnInit, OnChanges {
    }
 
   ngOnInit() {
-    this.service.ReadDocElem(this.id).subscribe((res:any)=>{
-      this.dataSource = res;
-    })
+    this.data = this.dataStore.getRavalList()
   	}
 
   ngOnChanges() {
-  	this.service.ReadDocElem(this.id).subscribe((res)=>{
-      this.dataSource = res;
-  	})
   }
   displayedColumns: string[] = ['id', 'ID_PARCEL', 'PRICE_COST_BEFORE', 'PRICE_COST_AFTER', 'event'];
 
 deleteInc(element){
-  console.log('test delate elem', element);
   this.service.DelateRevalGood(element.id).subscribe(res =>{
-    console.log(res);
-    
+    this.service.ReadDocElem()
   })
 }
 

@@ -23,11 +23,7 @@
 
   <mat-tab label="Содержание" [disabled] = '!doc_id_rep'>
   		<app-adding *ngIf="openADDWiew"></app-adding>
-		  <app-content 
-			   [document-id]='doc_Id'
-			   [dataFromId]= 'dataFromId'
-		  ></app-content>
-
+		  <app-content></app-content>
 	</mat-tab>
 </mat-tab-group>
 

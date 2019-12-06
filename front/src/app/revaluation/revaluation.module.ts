@@ -22,10 +22,13 @@ import { ModalComponent } from './modal/modal.component';
 import {MatCardModule} from '@angular/material/card';
 import { MatDialogModule } from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
-import { MyfilterPipe } from './myfilter.pipe';
+// import { MyfilterPipe } from './myfilter.pipe';
 import {DataService} from './data.service'
+
+import {  StorageService } from './adding/adding.component';
+
 @NgModule({
-  declarations: [MenegComponent, RevaluationComponent, ContentComponent, AddingComponent, ModalComponent, MyfilterPipe],
+  declarations: [MenegComponent, RevaluationComponent, ContentComponent, AddingComponent, ModalComponent],
   imports: [
     CommonModule,
     RevaluationRoutingModule,
@@ -46,7 +49,7 @@ import {DataService} from './data.service'
     BrowserModule,
     ReactiveFormsModule
   ],
-  providers: [DataService],
+  providers: [DataService, StorageService ],
 
   entryComponents: [
   	MenegComponent,

@@ -68,7 +68,7 @@ class mod_revaluationElem(Resource):
         print(res2.get("new"))
         print(res2.get("old"))
         print(res2.get("parentId"))
-        reval_head = RevaluationHead.get(res2['parentId']['id'])
+        reval_head = RevaluationHead.get(res2['parentId'])
         reval_obj = Revaluation(price_cost_before= res2['old']['price_sell_sum'],
                                 price_cost_after= res2['new']['newCostStr'])
 

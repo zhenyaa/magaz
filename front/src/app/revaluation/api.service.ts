@@ -2,21 +2,26 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders, HttpParams} from  '@angular/common/http';
 import { of } from 'rxjs';
+import { DataService } from './data.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private dataStore: DataService) { }
   API_URL  =  environment.baseUrl;
 
   ReadDocsRev(){
   	return this.http.get(this.API_URL+ '/rev/')
   }
 
-  ReadDocElem(id){
-  	return this.http.get(this.API_URL+ "/relem/" + id)
+  ReadDocElem(): void {
+    let id = this.dataStore.getDocumentID().value
+    console.log(id);
+  	this.http.get(this.API_URL+ "/relem/" + id).subscribe((res:any)=>{
+      this.dataStore.setRavalList(res);
+    })
   }
 
   CreateNewDoc(){
@@ -28,8 +33,7 @@ export class ApiService {
   }
 
   ReadStockElem(name, part, barcode){
-    return of(this.testData)
-  	// return this.http.get(this.API_URL + '/stock/', {params: {rname:name, rparcel:part, rbarcode:barcode}})
+  	 return this.http.get(this.API_URL + '/stock/', {params: {rname:name, rparcel:part, rbarcode:barcode}})
   }
 
   CreateNewElem(oldElem, elem, parentID){

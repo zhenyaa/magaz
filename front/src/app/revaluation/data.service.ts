@@ -6,6 +6,35 @@ import {BehaviorSubject, Subject, ReplaySubject} from 'rxjs';
 export class DataService {
 
   constructor() { }
+  // for list of revaluation object
+  private ravalList: BehaviorSubject<any[]> = new BehaviorSubject([]);
+
+  public getRavalList(): BehaviorSubject<any[]> {
+    return this.ravalList;
+  }
+
+  public setRavalList(newRevalList: any[]): void {
+    this.ravalList.next(newRevalList);
+  }
+
+  // its id document
+  private documentID: BehaviorSubject<any[]> = new BehaviorSubject([]);
+
+  public getDocumentID(): BehaviorSubject<any[]> {
+    return this.documentID;
+  }
+
+  public setDocumentID(newDocumentID: any[]): void {
+  	console.log('test datastore elemid',newDocumentID);
+    this.documentID.next(newDocumentID);
+  }
+
+
+
+
+  // public appendToState(newItem: any): void {
+  //   this.state.next([...this.state.getValue(), newItem]);
+  
 
 // private Voucher = new Subject();
 // curVoucher = this.Voucher.asObservable();

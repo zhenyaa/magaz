@@ -28,7 +28,7 @@ export class MenegComponent implements OnInit {
  	  console.log('selected row', row);
     this.selectedRowIndex = row.id;
     this.increment.emit(row.id);
-    this.dataStore.changeDocID(row);
+    this.dataStore.setDocumentID(row.id);
 }
 
 }

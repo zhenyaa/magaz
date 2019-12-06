@@ -89,9 +89,7 @@ export class RevaluationComponent implements OnInit {
   	this._stateForTab = this._stateForTab != true;
   	console.log('iits event tab',event);
     if (event == 1){
-         this.service.ReadDocElem(this.doc_Id).subscribe((res:any)=>{
-           this.dataFromId.data = res;
-         })
+         this.service.ReadDocElem()
     }
   }
 
