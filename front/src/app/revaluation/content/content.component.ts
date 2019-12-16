@@ -18,11 +18,12 @@ export class ContentComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.data = this.dataStore.getRavalList()
+    console.log(this.dataStore.getRavalList().value);
   	}
 
   ngOnChanges() {
   }
-  displayedColumns: string[] = ['id', 'ID_PARCEL', 'PRICE_COST_BEFORE', 'PRICE_COST_AFTER', 'event'];
+  displayedColumns: string[] = ['id', 'ID_PARCEL', 'name','PRICE_COST_BEFORE', 'PRICE_COST_AFTER', 'event'];
 
 deleteInc(element){
   this.service.DelateRevalGood(element.id).subscribe(res =>{

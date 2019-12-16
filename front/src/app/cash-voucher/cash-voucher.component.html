@@ -1,3 +1,12 @@
 <app-control></app-control>
 
-<app-voucher-list></app-voucher-list>
+<mat-tab-group>
+	<mat-tab label="Список">
+   		<app-voucher-list></app-voucher-list>
+	</mat-tab>
+
+  <mat-tab label="Содержание" [disabled] = '!vaucherId'>
+  	<app-detail-voucher></app-detail-voucher>
+	</mat-tab>
+</mat-tab-group>
+

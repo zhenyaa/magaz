@@ -1,11 +1,12 @@
 
-from flask import Flask, render_template
+from flask import Flask, render_template, g
 from flask_restful import Api
 
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 # from flask_alembic import Alembic
 from flask_migrate import Migrate, MigrateCommand
+from flask_login import LoginManager, current_user, login_required
 from flask_script import Manager
 # from back import config
 
@@ -19,6 +20,20 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db) # , compare_type=True,  for change type
 migrate.init_app(app,db)
 print(app.root_path)
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = "/#/login"
+login_manager.session_protection = 'strong'
+
+@login_manager.unauthorized_handler
+def unauthorized():
+    # print("error login, access deny")
+    return "False", 401
+
+@app.before_request
+def before_request():
+    g.user = current_user
 # manager = Manager(app)
 # manager.add_command('db', MigrateCommand)
 # alembic.init_app(app, run_mkdir=False)
@@ -60,6 +75,9 @@ api.add_resource(stock_module, '/stock/', '/stock/<id>' )
 
 from app.mod_voucher.controller import mod_voucher as voucher_module
 api.add_resource(voucher_module, '/voucher/', '/voucher/<id>')
+
+from app.mod_voucher.controller import VaucherDetail as voucher_detail_module
+api.add_resource(voucher_detail_module, '/voucherDetail/', '/voucherDetail/<id>')
 
 from app.mod_label.controller import mod_label as label_module
 api.add_resource(label_module, '/label/' )

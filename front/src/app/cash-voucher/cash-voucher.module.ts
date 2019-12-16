@@ -21,10 +21,12 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material';
 import {MatNativeDateModule} from '@angular/material';
+import { MatTabsModule} from '@angular/material/tabs';
+import { DetailVoucherComponent } from './detail-voucher/detail-voucher.component';
 
 
 @NgModule({
-  declarations: [CashVoucherComponent, ControlComponent, VoucherListComponent],
+  declarations: [CashVoucherComponent, ControlComponent, VoucherListComponent, DetailVoucherComponent],
   imports: [
     CommonModule,
     CashVoucherRoutingModule,
@@ -42,6 +44,7 @@ import {MatNativeDateModule} from '@angular/material';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatTabsModule,
 
 
   ],

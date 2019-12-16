@@ -70,6 +70,7 @@ class Goods(db.Model, CRUDMixin):    # таблица номенклатурі
     delimeter = db.Column(db.Integer, default=1)
     incoming = db.relationship("Incoming", backref="goods")  # must by class name in relationship'
     stocks = db.relationship("Stock", backref="goodsST")  # must by class name in relationship'
+    revaluation = db.relationship("Revaluation", backref="good_reval")
 
     def __init__(self, name, barcode):
         self.name = name

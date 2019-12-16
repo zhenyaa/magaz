@@ -21,9 +21,10 @@ import { ModalGoodComponentComponent } from './edit-doc/modal-good-component/mod
 // import {ModalGoodComponentComponent} from './edit-doc/modal-good-component/modal-good-component.component'
 import {MatIconModule} from '@angular/material/icon';
 import { ModalPrintLabelComponent } from './edit-doc/modal-print-label/modal-print-label.component';
+import { ModalEditComponent } from './edit-doc/modal-edit/modal-edit.component';
 
 @NgModule({
-  declarations: [ManagementComponent, DocListComponent, EditDocComponent, ModalGoodComponentComponent, ModalPrintLabelComponent],
+  declarations: [ManagementComponent, DocListComponent, EditDocComponent, ModalGoodComponentComponent, ModalPrintLabelComponent, ModalEditComponent],
   imports: [
   	BrowserModule,
     BrowserAnimationsModule,
@@ -43,6 +44,6 @@ import { ModalPrintLabelComponent } from './edit-doc/modal-print-label/modal-pri
     MatIconModule,
 
   ],
-  entryComponents: [ModalGoodComponentComponent, ModalPrintLabelComponent],
+  entryComponents: [ModalGoodComponentComponent, ModalPrintLabelComponent, ModalEditComponent],
 })
 export class ManagementModule { }

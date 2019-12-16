@@ -42,6 +42,7 @@ outdata:UserModel;
     Validators.minLength(1),
     Validators.pattern("^[0-9][0-9]*$") //need valid for quantity
     ]);
+    
     this.Validate_fractional_number = new FormControl('', [
     Validators.required,
     Validators.max(this.data.quant_div - 1),

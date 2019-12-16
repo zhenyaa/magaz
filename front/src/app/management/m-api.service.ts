@@ -59,6 +59,10 @@ API_URL  =  environment.baseUrl;
     const body = {label: data};
     return this.http.post(this.API_URL+'/label/', body, { responseType: 'blob' })
   }
+
+  UpdateElem(data){
+    return this.http.patch(this.API_URL + '/incomin/' + data.incId, { params: { elem: data}})
+  }
   
   
 

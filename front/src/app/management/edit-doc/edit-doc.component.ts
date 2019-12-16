@@ -5,6 +5,8 @@ import {ModalGoodComponentComponent} from './modal-good-component/modal-good-com
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { timeout } from 'rxjs/operators';
 import {ModalPrintLabelComponent} from './modal-print-label/modal-print-label.component';
+import { ModalEditComponent} from './modal-edit/modal-edit.component'
+import { filter, switchMap } from 'rxjs/operators';
 @Component({
   selector: 'app-edit-doc',
   templateUrl: './edit-doc.component.html',
@@ -143,6 +145,25 @@ markup:any = 0;
          // setTimeout(this.getGoodInDoc(), 1000)
         
      }
+
+ editElem(row){
+   console.log('edit create elem', row);
+   const dialogRef = this.dialog.open(ModalEditComponent, {
+           width: '50%',
+           disableClose: true,
+           data: row
+         });
+
+         dialogRef.afterClosed().pipe(
+           filter(Boolean),
+           switchMap(result => this.service.UpdateElem(result))
+           ).subscribe(res=>{
+             console.log(res);
+           })
+         }
+
+
+ 
 
 
 

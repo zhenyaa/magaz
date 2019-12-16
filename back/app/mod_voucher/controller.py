@@ -56,3 +56,14 @@ class mod_voucher(Resource):
 
     def delete(self):
         pass
+
+class VaucherDetail(Resource):
+
+    baseQuery = 0
+    def __init__(self):
+        self.baseQuery = db.session.query(VoucherElement)
+
+    def get(self, id= None):
+        print(id)
+        print(request.get_json(force=True))
+        return '', 200

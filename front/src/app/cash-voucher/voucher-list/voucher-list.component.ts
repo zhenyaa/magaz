@@ -11,7 +11,7 @@ export class VoucherListComponent implements OnInit {
 
   constructor(private dataStore : DataStoreService) { }
   dataSource = new MatTableDataSource<tableVoucher>();
-
+  selectedRowIndex: number = -1;
   ngOnInit() {
   	 this.dataStore.curVoucher.subscribe((res:any)=>{
   	 	console.log('res in subs',res);
@@ -27,9 +27,7 @@ export class VoucherListComponent implements OnInit {
   ];
 
   /** Gets the total cost of all transactions. */
-  getTotalCost() {
-    return this.dataSource.data.map((t) => t["quant_velem"]).reduce((acc, value) => acc + value, 0);
-  }
+ 
 
   getTypeOfPay(tyPy:Voucher){
   	console.log('typay',tyPy);
@@ -39,6 +37,18 @@ export class VoucherListComponent implements OnInit {
   	else{
   		return "Безналичный"
   	}
+  }
+
+  highlight(row){
+     console.log('selected row', row);
+    this.selectedRowIndex = row.id;
+    this.dataStore.setVoucherID(row.id);
+    // this.increment.emit(row.id);
+    // this.dataStore.setDocumentID(row.id);
+}
+
+   getTotalCost() {
+    return this.dataSource.data.map((t) => t["quant_velem"]).reduce((acc, value) => acc + value, 0);
   }
 
   getTotalCost1() {

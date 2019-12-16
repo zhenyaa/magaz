@@ -10,6 +10,7 @@ export class DataService {
   private ravalList: BehaviorSubject<any[]> = new BehaviorSubject([]);
 
   public getRavalList(): BehaviorSubject<any[]> {
+  	console.log('its reval list',this.ravalList.value);
     return this.ravalList;
   }
 

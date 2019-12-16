@@ -62,3 +62,16 @@ class mod_incomin(Resource):
             per.recalc()
         return '', 204
 
+    def patch(self, id_pearent=None):
+        print(request.get_json(force=True))
+        data = request.get_json(force=True)['params']['elem']
+        incElem = Incoming.get(id_pearent)
+        print(incElem)
+        print(data)
+
+        incElem._cost_price = data['_cost_price']
+        incElem.quantity = data['quantyty']
+        incElem._fractional_number = data['_fractional_number']
+        db.session.commit()
+        return '', 200
+

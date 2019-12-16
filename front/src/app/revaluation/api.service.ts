@@ -43,6 +43,12 @@ export class ApiService {
   DelateRevalGood(id:number){
     return this.http.delete(this.API_URL + '/relem/' + id)
   }
+
+  useRevaluation(id:number){
+    return this.http.patch(this.API_URL + '/rev/'+ id, { params: { status: 'True'}})
+  }
+
+
  testData = [
   {
     "ID_PARCEL": 1829, 

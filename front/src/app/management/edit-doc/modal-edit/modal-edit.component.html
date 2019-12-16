@@ -1,0 +1,46 @@
+<mat-card class='modal'>
+	<mat-chip-list>
+  		<mat-chip> {{data.name}} </mat-chip>
+	</mat-chip-list>
+
+	<mat-form-field class="example-full-width" appearance="outline">
+		<mat-label>Количество</mat-label>
+    	<input matInput placeholder="Количество" [ngClass]="{'red-border-class': ValidateQuantyty.errors, 'empty-class': !ValidateQuantyty.errors}" [(ngModel)]="data.quantyty" [formControl]="ValidateQuantyty" name="РРО" value="{{data.quantity}}">
+	</mat-form-field>
+
+	<mat-form-field class="example-full-width" appearance="outline">
+		<mat-label>Дробное количество</mat-label>
+    	<input matInput placeholder="Дробное количество" [ngClass]="{'red-border-class': Validate_fractional_number.errors, 'empty-class': !Validate_fractional_number.errors}" [(ngModel)]="data._fractional_number" [formControl]="Validate_fractional_number" name="РРО" value="{{data._fractional_number}}">
+	</mat-form-field>
+
+	<mat-form-field class="example-full-width" appearance="outline">
+		<mat-label>Делитель</mat-label>
+    	<input matInput placeholder="Делитель" [ngClass]="{'red-border-class': ValidateDelimeter.errors, 'empty-class': !ValidateDelimeter.errors}" [(ngModel)]="data.delimeter" [formControl]="ValidateDelimeter"  name="РРО" value="{{data.delimeter}}">
+	</mat-form-field>
+
+	<mat-form-field class="example-full-width" appearance="outline">
+		<mat-label>Цена закупочная</mat-label>
+    	<input  type=number matInput placeholder="Цена закупочная" [ngClass]="{'red-border-class': Validate_purchase_cost.errors, 'empty-class': !Validate_purchase_cost.errors}" [(ngModel)]="data._purchase_cost" [formControl]="Validate_purchase_cost"  name="РРО" value="{{data._purchase_cost}}">
+	</mat-form-field>
+
+	<mat-form-field class="example-full-width" appearance="outline" >
+		<mat-label>Цена отпускная</mat-label>
+    	<input type=number matInput placeholder="Цена отпускная" [ngClass]="{'red-border-class': Validate_cost_price.errors, 'empty-class': !Validate_cost_price.errors}" [(ngModel)]="data._cost_price" [formControl]="Validate_cost_price" value="{{data._cost_price}}" name="РРО">
+	</mat-form-field>
+
+	<!-- <mat-form-field class="example-full-width">
+   		<input matInput placeholder="Количество" [(ngModel)]="newGood.quantyty" value="">
+	</mat-form-field> -->
+
+	<mat-card-actions>
+		<button mat-button [mat-dialog-close]="data"  [disabled] = "
+		ValidateQuantyty?.errors?.required ||
+		Validate_fractional_number.errors ||
+		ValidateDelimeter.errors ||
+		Validate_purchase_cost.errors ||
+		Validate_cost_price.errors">Добавить</button>
+
+		<button  mat-button mat-dialog-close  >Отмена</button>
+	</mat-card-actions>
+
+</mat-card>

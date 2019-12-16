@@ -120,6 +120,51 @@ class RevaluationHead(db.Model, CRUDMixin):
             self.DOC_NAME = new
             db.session.commit()
 
+    def toLetToSell(self):
+        # print(self.children)
+        for elem in self.children:
+            elem.changeCost()
+        self.status = True
+        db.session.commit()
+
+    def calcQuatNum(self):
+        self.QUANT_NUM = len(self.children)
+        db.session.commit()
+
+    def calcQuantSumBefore(self):
+        varForSum = 0
+        for rev_elem in self.children:
+            stock_elem = rev_elem.STOCK_PERENT
+            varForSum += stock_elem.price_sell_sum * stock_elem.quant_int
+        self.AMOUNT_BUY_BEFORE = varForSum
+        db.session.commit()
+
+    def calcQuantSumAfter(self):
+        varForSum = 0
+        for rev_elem in self.children:
+            stock_elem = rev_elem.STOCK_PERENT
+            varForSum += rev_elem.PRICE_COST_AFTER * stock_elem.quant_int
+        self.AMOUNT_BUY_AFTER = varForSum
+        db.session.commit()
+
+    def calcDiffQuant(self):
+        self.DIFF_QUANT = self.AMOUNT_BUY_AFTER - self.AMOUNT_BUY_BEFORE
+        db.session.commit()
+
+    def calcDiffPer(self):
+        self.DIFF_PER = (self.AMOUNT_BUY_AFTER - self.AMOUNT_BUY_BEFORE) / self.AMOUNT_BUY_BEFORE
+        db.session.commit()
+
+    def calcAllParam(self):
+        self.calcQuatNum()
+        self.calcQuantSumBefore()
+        self.calcQuantSumAfter()
+        self.calcDiffQuant()
+        self.calcDiffPer()
+
+
+
+
 
 
 
@@ -176,4 +221,9 @@ class Revaluation(db.Model, CRUDMixin):
         values = ', '.join("%s=%r" % (n, getattr(self, n)) for n in self.__table__.c.keys() if n not in self._repr_hide)
         return "%s(%s)" % (self.__class__.__name__, values)
 
+    def changeCost(self):
+        stok_elem = db.session.query(Stock).filter_by(ID_PARCEL = self.ID_PARCEL).first()
+        print(stok_elem)
+        stok_elem.price_sell_sum = self.PRICE_COST_AFTER
+        db.session.commit()
 

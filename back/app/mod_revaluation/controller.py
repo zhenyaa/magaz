@@ -6,6 +6,7 @@ from app.mod_incomin.model import Incoming
 from app.mod_stock.model import Stock
 from flask import jsonify, request
 from flask_cors import cross_origin
+from flask_login import login_required
 
 class mod_revaluation(Resource):
     """Its class for get goods."""
@@ -32,16 +33,24 @@ class mod_revaluation(Resource):
     def put(self):
         pass
 
-    def patch(self):
-        pass
+    def patch(self, id=None):
+        rev_head = RevaluationHead.get(id)
+        if rev_head.status == True:
+            return 'You can`t do use Revaluation', 209
+        rev_head.toLetToSell()
+        return 'Use Revaluation Secful', 200
 
     def delete(self, id=None):
         print(id)
         print(request.args.get('sessionId'))
+
+
         d = request.args.get('sessionId')
         print(RevaluationHead.get(d))
+        if RevaluationHead.get(d).status == True:
+            return 'You can`t do dalate', 209
         RevaluationHead.get(d).delete()
-        return '', 204
+        return '', 200
 
 
 class mod_revaluationElem(Resource):
@@ -62,6 +71,7 @@ class mod_revaluationElem(Resource):
         print('resp !!!!',resp)
         return jsonify(resp)
 
+    # @login_required
     def post(self):
         res = request.get_json(force=True)
         res2 = res.get('elem')
@@ -78,10 +88,19 @@ class mod_revaluationElem(Resource):
         incom = Incoming.get(res2['old']['ID_PARCEL'])
         incom.revaluation.append(reval_obj)
         stock_obj = Stock.get(res2['old']['id'])
+        good = stock_obj.GOOD_PERENT
+        good.revaluation.append(reval_obj)
         stock_obj.revaluation.append(reval_obj)
+
         db.session.commit()
+        reval_head.calcAllParam()
         return "ok", 201
 
     def delete(self, id=None):
-        Revaluation.get(id).delete()
+        rev_elem = Revaluation.get(id)
+        rev_head = rev_elem.parent
+        if rev_head.status == True:
+            return 'You can`t do dalate', 209
+        rev_elem.delete()
+        rev_head.calcAllParam()
         return 'ok', 200

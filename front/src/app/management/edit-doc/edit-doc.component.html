@@ -90,7 +90,7 @@
 
 
   <tr mat-header-row *matHeaderRowDef="displayedColumnsOut"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumnsOut;"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumnsOut;" (dblclick)="editElem(row)"></tr>
 </table>
 
 </mat-card>

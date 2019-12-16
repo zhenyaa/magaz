@@ -57,7 +57,6 @@ export class ModalComponent implements OnInit {
 
   eventChanePercent(){
   	this.newData.calcCost(this.data.good.price_sell_sum);
-
   }
 
   validatorList(){

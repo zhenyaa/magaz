@@ -48,7 +48,7 @@ export class RevaluationComponent implements OnInit {
 		disable: true,
 		iconName: 'play_arrow',
 		matTooltip: 'Применить',
-		click: () => this.deleteDoc(),
+		click: () => this.useReval(),
 	},
 	{
 		filter: 1,
@@ -86,11 +86,18 @@ export class RevaluationComponent implements OnInit {
 
  
   selectedIndexChange(event){
+    this.getDocList()
   	this._stateForTab = this._stateForTab != true;
   	console.log('iits event tab',event);
     if (event == 1){
          this.service.ReadDocElem()
     }
+  }
+
+  useReval(){
+    this.service.useRevaluation(Number(this.doc_id_rep)).subscribe(res=>{
+      console.log('its resp on use Revaluation', res);
+    })
   }
 
   getDocList(){
